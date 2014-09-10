@@ -34,7 +34,7 @@ func (r *Rikimaru) Doc() *html.HtmlDocument {
   return r.doc
 }
 
-func (r *Rikimaru) Init(url string) (err error) {
+func (r *Rikimaru) InitWithURL(url string) (err error) {
   r.url = url
   if len(r.url) == 0 {
     err := errors.New("URL not set")
@@ -49,6 +49,12 @@ func (r *Rikimaru) Init(url string) (err error) {
   }
 
   r.doc, err = gokogiri.ParseHtml([]byte(html))
+
+  return err
+}
+
+func (r *Rikimaru) InitWithText(text string) (err error) {
+  r.doc, err = gokogiri.ParseHtml([]byte(text))
 
   return err
 }
