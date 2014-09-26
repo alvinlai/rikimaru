@@ -14,8 +14,18 @@ type Rikimaru struct {
 }
 
 func HttpGet(url string) (htmlString string, err error) {
-  resp, err := http.Get(url)
+  // resp, err := http.Get(url)
 
+  client := &http.Client{}
+
+  req, err := http.NewRequest("GET", url, nil)
+  if err != nil {
+    return "", err
+  }
+
+  req.Header.Set("Referer", "https://google.com/")
+
+  resp, err := client.Do(req)
   if err != nil {
     return "", err
   }
