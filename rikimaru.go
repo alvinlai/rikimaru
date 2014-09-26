@@ -24,6 +24,7 @@ func HttpGet(url string) (htmlString string, err error) {
   }
 
   req.Header.Set("Referer", "https://google.com/")
+  req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.124 Safari/537.36")
 
   resp, err := client.Do(req)
   if err != nil {
