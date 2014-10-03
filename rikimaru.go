@@ -6,6 +6,7 @@ import (
   "errors"
   "github.com/moovweb/gokogiri"
   "github.com/moovweb/gokogiri/html"
+  "time"
 )
 
 type Rikimaru struct {
@@ -15,8 +16,10 @@ type Rikimaru struct {
 
 func HttpGet(url string) (htmlString string, err error) {
   // resp, err := http.Get(url)
-
-  client := &http.Client{}
+  timeout := time.Duration(5 * time.Second)
+  client := &http.Client{
+    Timeout: timeout,
+  }
 
   req, err := http.NewRequest("GET", url, nil)
   if err != nil {
